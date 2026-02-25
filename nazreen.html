@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Career Recommendation Engine</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        select, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-top: 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e9f5ff;
+            border-radius: 5px;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+    <h1>Career Recommendation Engine</h1>
+
+    <form id="careerForm">
+
+        <label>Education Level:</label>
+        <select id="education">
+            <option value="highschool">High School</option>
+            <option value="diploma">Diploma</option>
+            <option value="bachelor">Bachelor's Degree</option>
+            <option value="master">Master's Degree</option>
+        </select>
+
+        <label>Interests:</label>
+        <select id="interest">
+            <option value="technology">Technology</option>
+            <option value="business">Business</option>
+            <option value="arts">Arts</option>
+            <option value="healthcare">Healthcare</option>
+        </select>
+
+        <label>Skills:</label>
+        <select id="skills">
+            <option value="programming">Programming</option>
+            <option value="communication">Communication</option>
+            <option value="design">Design</option>
+            <option value="analysis">Analysis</option>
+        </select>
+
+        <label>Preferred Industry:</label>
+        <select id="industry">
+            <option value="it">IT</option>
+            <option value="finance">Finance</option>
+            <option value="media">Media</option>
+            <option value="medical">Medical</option>
+        </select>
+
+        <button type="button" onclick="recommendCareer()">Get Recommendation</button>
+
+    </form>
+
+    <div id="result"></div>
+</div>
+
+<script>
+function recommendCareer() {
+
+    let education = document.getElementById("education").value;
+    let interest = document.getElementById("interest").value;
+    let skills = document.getElementById("skills").value;
+    let industry = document.getElementById("industry").value;
+
+    let recommendations = [];
+
+    // Rule-based logic
+    if (interest === "technology" && skills === "programming") {
+        recommendations.push("Software Developer - You enjoy technology and coding, making this a strong match.");
+        recommendations.push("Web Developer - Ideal if you like building websites and applications.");
+        recommendations.push("Data Scientist - Good if you enjoy analysis and problem-solving.");
+    }
+
+    if (interest === "business" && skills === "communication") {
+        recommendations.push("Business Analyst - Suitable for analyzing business processes.");
+        recommendations.push("Marketing Manager - Ideal for communication and strategy.");
+        recommendations.push("HR Manager - Good for managing people and recruitment.");
+    }
+
+    if (interest === "arts" && skills === "design") {
+        recommendations.push("Graphic Designer - Great for creative and visual skills.");
+        recommendations.push("UI/UX Designer - Combine design with technology.");
+        recommendations.push("Content Creator - Ideal for creative storytelling.");
+    }
+
+    if (interest === "healthcare" && industry === "medical") {
+        recommendations.push("Doctor - Suitable for advanced medical studies.");
+        recommendations.push("Nurse - Important healthcare support role.");
+        recommendations.push("Medical Lab Technician - Diagnostic and lab work.");
+    }
+
+    if (recommendations.length === 0) {
+        recommendations.push("Career Counselor - Explore more options to find your best fit.");
+        recommendations.push("Entrepreneur - Start your own venture based on your passion.");
+        recommendations.push("Government Jobs - Stable and structured career path.");
+    }
+
+    document.getElementById("result").innerHTML =
+        "<h3>Recommended Careers:</h3><ul><li>" +
+        recommendations.join("</li><li>") +
+        "</li></ul>";
+}
+</script>
+
+</body>
+</html>
